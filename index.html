@@ -134,21 +134,81 @@ function createHeart() {
   }, 6000);
 }
 
-setInterval(createHeart, 800);
 </script>
   
 <audio id="bgMusic" loop>
-  <source src="Teri Ore-(Mr-Jat.in).mp3" type="audio/mpeg">
+  <source src="" type="audio/mpeg">
 </audio>
 
-<button onclick="playMusic()" style="margin-top:20px; padding:10px 20px; border:none; border-radius:10px; background:#ff8fa3; color:white; font-size:16px; cursor:pointer;">
-Play Our Song 🎶
-</button>
+<!-- Romantic Start Overlay -->
+<div id="startOverlay">
+  <div class="overlayText">Tap to Begin ❤️</div>
+</div>
+
+<style>
+#startOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #d8a7b1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1.5s ease;
+}
+
+.overlayText {
+  font-size: 24px;
+  color: white;
+  letter-spacing: 2px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.reveal {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+</style>
 
 <script>
-function playMusic() {
-  document.getElementById("bgMusic").play();
+const music = document.getElementById("bgMusic");
+music.volume = 0;
+
+function fadeInMusic() {
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < 1) {
+      vol += 0.02;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
 }
+
+function startExperience() {
+  music.play();
+  fadeInMusic();
+
+  document.getElementById("startOverlay").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("startOverlay").style.display = "none";
+  }, 1500);
+
+  // Start hearts only after tap
+  setInterval(createHeart, 800);
+}
+
+document.getElementById("startOverlay").addEventListener("click", startExperience);
 </script>
   
 </body>
