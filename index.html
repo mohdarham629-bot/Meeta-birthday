@@ -3,47 +3,74 @@
 <head>
 <title>Happy Birthday Meeta</title>
 <style>
+
 body {
   margin:0;
   font-family: 'Georgia', serif;
-  background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+  background: linear-gradient(135deg, #f8e1e7, #f3d2d9);
   text-align:center;
   color:#5a2a2a;
+  overflow-x:hidden;
 }
 
+/* Fade In Animation */
 .container {
-  padding: 60px 20px;
+  padding: 80px 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 55px;
   margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
 p {
   font-size: 20px;
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
-  line-height: 1.6;
+  line-height: 1.8;
+  margin-bottom: 40px;
 }
 
+/* Image Styling */
 img {
-  width: 250px;
-  border-radius: 20px;
-  margin-top: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 280px;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
 }
 
-.heart {
-  font-size: 30px;
-  margin-top: 30px;
+img:hover {
+  transform: scale(1.05);
 }
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes floatUp {
+  from {transform: translateY(0);}
+  to {transform: translateY(-100vh);}
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
 <h1>Happy Birthday Meeta 🤍</h1>
 
 <p>
@@ -51,14 +78,30 @@ Today is about you.
 Your smile.  
 Your kindness.  
 The way you make ordinary days feel softer.  
-I made this just so you know how special you are.
+I made this just so you know how deeply you matter to me.
 </p>
 
 <img src="meeta.jpg">
 
-<div class="heart">❤️</div>
-
 </div>
+
+<!-- Floating Hearts Script -->
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 800);
+</script>
 
 </body>
 </html>
