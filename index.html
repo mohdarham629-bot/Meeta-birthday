@@ -117,6 +117,18 @@ I made this just so you know how deeply you matter to me.
 
 <img src="meeta.jpg">
 
+<br><br>
+<button onclick="showLove()" class="loveBtn">
+  Open My Heart 💌
+</button>
+
+<p id="secretMessage" class="hiddenMessage">
+  From the moment you walked into my life,
+  ordinary days started feeling like poetry.
+  You are warmth. You are magic.
+  And today, the world celebrates the most beautiful soul I know. 🤍
+</p>
+
 </div>
 
 <!-- Floating Hearts Script -->
@@ -177,6 +189,38 @@ function createHeart() {
   opacity: 0;
   transition: opacity 2s ease;
 }
+
+.loveBtn {
+  background: #e88fa1;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.loveBtn:hover {
+  transform: scale(1.08);
+  background: #d96b82;
+}
+
+.hiddenMessage {
+  opacity: 0;
+  max-width: 500px;
+  margin: 20px auto;
+  font-size: 18px;
+  line-height: 1.6;
+  transform: translateY(20px);
+  transition: all 1.5s ease;
+}
+
+.showMessage {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 
 <script>
@@ -209,6 +253,13 @@ function startExperience() {
 }
 
 document.getElementById("startOverlay").addEventListener("click", startExperience);
+</script>
+
+<script>
+function showLove() {
+  const message = document.getElementById("secretMessage");
+  message.classList.add("showMessage");
+}
 </script>
   
 </body>
